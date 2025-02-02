@@ -1,18 +1,25 @@
-const TaskInput = ({ taskInput, setTaskInput, addTask, editIndex }) => {
+import React, { useState } from "react";
+
+function TaskInput({ AddTask, input, setInput, editIndex }) {
   return (
-    <div className="input-group mb-3">
-      <input
-        type="text"
-        className="form-control"
-        value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)}
-        placeholder="Enter a task"
-      />
-      <button className="btn btn-success" onClick={addTask}>
-        {editIndex !== null ? "Update" : "Add"}
-      </button>
+    <div className="container d-flex align-items-center justify-content-center">
+      <form className="d-flex" onSubmit={AddTask}>
+        <input
+          className="px-3"
+          placeholder="write a task.."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></input>
+        {editIndex !== null ? (
+          <button className="btn btn-info">update</button>
+        ) : (
+          <button type="submit" className="btn btn-primary">
+            Add
+          </button>
+        )}
+      </form>
     </div>
   );
-};
+}
 
 export default TaskInput;
